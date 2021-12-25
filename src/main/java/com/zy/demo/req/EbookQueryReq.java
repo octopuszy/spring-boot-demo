@@ -1,6 +1,6 @@
 package com.zy.demo.req;
 
-public class EbookQueryReq{
+public class EbookQueryReq extends PageReq{
     private Long id;
 
     private String name;
