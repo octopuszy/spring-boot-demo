@@ -63,4 +63,9 @@ public class EbookService {
         return res;
     }
 
+    public int delete(long id){
+        return ebookMapper.deleteByPrimaryKey(id);
+
+    }
+
 }

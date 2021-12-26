@@ -40,6 +40,6 @@
                              targetPackage="com.zy.demo.mapper"
                              type="XMLMAPPER"/>
 
-        <table tableName="ebook"/>
+        <table tableName="user"/>
     </context>
 </generatorConfiguration>

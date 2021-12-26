@@ -7,10 +7,8 @@ import com.zy.demo.resp.EbookQueryResp;
 import com.zy.demo.resp.PageResp;
 import com.zy.demo.service.EbookService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/ebook")
@@ -19,7 +17,7 @@ public class Ebook {
     private EbookService ebookService;
 
     @GetMapping("/list")
-    public CommonResp<PageResp<EbookQueryResp>> list(EbookQueryReq req){
+    public CommonResp<PageResp<EbookQueryResp>> list(@Validated EbookQueryReq req){
         CommonResp<PageResp<EbookQueryResp>> resp = new CommonResp<>();
         resp.setContent(ebookService.list(req));
         return resp;
@@ -30,6 +28,14 @@ public class Ebook {
         CommonResp<Object> resp = new CommonResp<>();
         boolean save = ebookService.save(req) > 0;
         resp.setSuccess(save);
+        return resp;
+    }
+
+    @PostMapping("/delete/{id}")
+    public CommonResp<Object> list(@PathVariable long id){
+        CommonResp<Object> resp = new CommonResp<>();
+        boolean del = ebookService.delete(id) > 0;
+        resp.setSuccess(del);
         return resp;
     }
 }
